@@ -16,3 +16,17 @@ user_params = {
 
 # ------------------------------- CREATE A GRAPH
 GRAPH_ENDPOINT = f"{PIXELA_USER_ENDPOINT}/{USERNAME}/graphs"
+
+graph_config = {
+    "id": "graph1",
+    "name": "Running Graph",
+    "unit": "km",
+    "type": "float",
+    "color": "ajisai",
+}
+
+headers = {"X-USER-TOKEN": TOKEN}
+
+
+response = requests.post(url=GRAPH_ENDPOINT, json=graph_config, headers=headers)
+print(response.text)
