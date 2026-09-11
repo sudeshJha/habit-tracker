@@ -30,10 +30,18 @@ graph_config = {
 }
 # response = requests.post(url=GRAPH_ENDPOINT, json=graph_config, headers=HEADERS)
 
-# ------------------------------- CREATE A GRAPH
+# ------------------------------- CREATE A PIXEL
 PIXEL_CREATION_ENDPOINT = f"{PIXELA_USER_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}"
-pixel_data = {"date": "20260911", "quantity": "9.74"}
+today = datetime(year=2026, month=9, day=9)
+pixel_data = {"date": today.strftime("%Y%m%d"), "quantity": "20"}
+
+# response = requests.post(url=PIXEL_CREATION_ENDPOINT, json=pixel_data, headers=HEADERS)
 
 
-response = requests.post(url=PIXEL_CREATION_ENDPOINT, json=pixel_data, headers=HEADERS)
+# ------------------------------- EDIT A PIXEL
+edit_date = datetime(year=2026, month=9, day=9).strftime("%Y%m%d")
+new_pixel_data = {"quantity": "40"}
+PIXEL_UPDATE_ENDPOINT = f"{PIXEL_CREATION_ENDPOINT}/{edit_date}"
+
+response = requests.put(url=PIXEL_UPDATE_ENDPOINT, json=new_pixel_data, headers=HEADERS)
 print(response.text)
