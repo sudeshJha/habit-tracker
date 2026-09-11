@@ -32,8 +32,8 @@ graph_config = {
 
 # ------------------------------- CREATE A PIXEL
 PIXEL_CREATION_ENDPOINT = f"{PIXELA_USER_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}"
-today = datetime(year=2026, month=9, day=9)
-pixel_data = {"date": today.strftime("%Y%m%d"), "quantity": "20"}
+today = datetime(year=2026, month=9, day=10)
+pixel_data = {"date": today.strftime("%Y%m%d"), "quantity": "14"}
 
 # response = requests.post(url=PIXEL_CREATION_ENDPOINT, json=pixel_data, headers=HEADERS)
 
@@ -43,5 +43,11 @@ edit_date = datetime(year=2026, month=9, day=9).strftime("%Y%m%d")
 new_pixel_data = {"quantity": "40"}
 PIXEL_UPDATE_ENDPOINT = f"{PIXEL_CREATION_ENDPOINT}/{edit_date}"
 
-response = requests.put(url=PIXEL_UPDATE_ENDPOINT, json=new_pixel_data, headers=HEADERS)
+# response = requests.put(url=PIXEL_UPDATE_ENDPOINT, json=new_pixel_data, headers=HEADERS)
+
+# ------------------------------- DELETE A PIXEL
+delete_date = datetime(year=2026, month=9, day=10).strftime("%Y%m%d")
+PIXEL_DELETE_ENDPOINT = f"{PIXEL_CREATION_ENDPOINT}/{delete_date}"
+
+response = requests.delete(url=PIXEL_DELETE_ENDPOINT, headers=HEADERS)
 print(response.text)
